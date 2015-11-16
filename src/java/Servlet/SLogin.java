@@ -48,10 +48,10 @@ public class SLogin extends HttpServlet {
             if(ejbUsuario.isExistUsuario(usuario, password)){
                 HttpSession session = request.getSession(true);
                 session.setAttribute("ejbUsuario", ejbUsuario);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("index");
             }else{
                 request.getSession().setAttribute("error", "ERROR");
-                response.sendRedirect("SComunicaciones");
+                response.sendRedirect("SIndex");
             }
             
         }

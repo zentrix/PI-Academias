@@ -23,7 +23,7 @@ import javax.servlet.ServletOutputStream;
  *
  * @author carlos
  */
-public class minutaservlet extends HttpServlet {
+public class SMinuta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

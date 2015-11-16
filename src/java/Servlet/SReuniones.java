@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author zentr
  */
-public class reunionesServlet extends HttpServlet {
+public class SReuniones extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -134,15 +134,15 @@ public class reunionesServlet extends HttpServlet {
                     return re;
                 }catch(MailConnectException e){
                     
-                    Logger.getLogger(reunionesServlet.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(SReuniones.class.getName()).log(Level.SEVERE, null, e);
                     return re;
                 } catch (AddressException ex) {
                     
-                    Logger.getLogger(reunionesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SReuniones.class.getName()).log(Level.SEVERE, null, ex);
                     return re;
                 } catch (MessagingException ex) {
                     
-                    Logger.getLogger(reunionesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SReuniones.class.getName()).log(Level.SEVERE, null, ex);
                     return re;
                 }
                 

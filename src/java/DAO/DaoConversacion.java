@@ -36,9 +36,9 @@ public class DaoConversacion implements IComentario{
         Statement statement;
         ResultSet resultSet;
         
-        String query="SELECT c.comentario,c.fecha,u.nombre FROM conversaciones c "
+        String query="SELECT c.idComentario,c.comentario,c.fecha,u.nombre FROM conversaciones c "
                 + "INNER JOIN conversacion_miembro cm ON c.idComentario=cm.idConversacion "
-                + "INNER JOIN user u ON cm.idUsuario=u.id_profesor";
+                + "INNER JOIN user u ON cm.idUsuario=u.id_profesor ORDER BY c.fecha";
         
         statement=(Statement) conexion.createStatement();
         resultSet=statement.executeQuery(query);
@@ -51,7 +51,7 @@ public class DaoConversacion implements IComentario{
             conversacion.setIdConversacion(resultSet.getInt("idComentario"));
             conversacion.setComentario(resultSet.getString("comentario"));
             conversacion.setFecha(resultSet.getString("fecha"));
-            conversacion.setIdUsuario(resultSet.getInt("idUsuario"));
+            conversacion.setNombre(resultSet.getString("nombre"));
             
             listConversacion.add(conversacion);
         }

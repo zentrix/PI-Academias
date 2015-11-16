@@ -77,3 +77,24 @@ textArea{resize: none;}
   cursor: inherit;
   display: block;
 }
+
+#ilustracion{
+    background: url(../img/404.gif) no-repeat 50% 55%;
+    max-width: 100%;
+    min-height: 400px;
+    background-size: 100%;
+    display: box;
+}
+
+.error-404.not-found {
+    margin: auto;
+    max-width: 770px;
+    width: 100%;
+    display: block;
+}
+
+.msj_404 {
+    font-size: 1.3em;
+    margin: 30px 0px 60px 0px;
+    text-align: center;
+}

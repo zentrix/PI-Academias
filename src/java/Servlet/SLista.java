@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author carlos
  */
-public class listas extends HttpServlet {
+public class SLista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

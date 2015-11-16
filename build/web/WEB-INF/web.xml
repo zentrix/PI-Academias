@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>MinutaServlet</servlet-name>
-        <servlet-class>com.zentrix.minutas.minutaservlet</servlet-class>
+        <servlet-name>Sindex</servlet-name>
+        <servlet-class>Servlet.SIndex</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>reunionesServlet</servlet-name>
-        <servlet-class>com.zentrix.minutas.reunionesServlet</servlet-class>
+        <servlet-name>SLogin</servlet-name>
+        <servlet-class>Servlet.SLogin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>listas</servlet-name>
-        <servlet-class>com.zentrix.minutas.listas</servlet-class>
+        <servlet-name>SListas</servlet-name>
+        <servlet-class>Servlet.SLista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Sminuta</servlet-name>
+        <servlet-class>Servlet.minutaservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SReuniones</servlet-name>
+        <servlet-class>Servlet.reunionesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MinutaServlet</servlet-name>
-        <url-pattern>/minutas</url-pattern>
+        <servlet-name>Sindex</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>reunionesServlet</servlet-name>
-        <url-pattern>/reuniones</url-pattern>
+        <servlet-name>SLogin</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>listas</servlet-name>
+        <servlet-name>SListas</servlet-name>
         <url-pattern>/listas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sminuta</servlet-name>
+        <url-pattern>/minuta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SReuniones</servlet-name>
+        <url-pattern>/reunion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -30,6 +46,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>/login</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
 </web-app>

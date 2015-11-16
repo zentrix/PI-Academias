@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author carlos
  */
-@WebServlet(name = "SComunicaciones", urlPatterns = {"/SComunicaciones"})
-public class SComunicaciones extends HttpServlet {
+@WebServlet(name = "Sindex", urlPatterns = {"/index"})
+public class SIndex extends HttpServlet {
 
     @EJB
     private EjbConversacion ejbConversacion;
