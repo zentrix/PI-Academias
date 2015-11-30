@@ -5,26 +5,21 @@
  */
 package Servlet;
 
-import Ejb.EjbUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author carlos
  */
-@WebServlet(name = "SLogin", urlPatterns = {"/sLogin"})
-public class SLogin extends HttpServlet {
+@WebServlet(name = "Sclose", urlPatterns = {"/cerrar"})
+public class SClose extends HttpServlet {
 
-    @EJB
-    private EjbUsuario ejbUsuario;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,23 +32,8 @@ public class SLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         if(request.getMethod().equals("GET")){
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        if(request.getMethod().equals("POST")){
-            String usuario = request.getParameter("usuario");
-            String password = request.getParameter("contrasena");
-            
-            if(ejbUsuario.isExistUsuario(usuario, password)){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("ejbUsuario", ejbUsuario);
-                response.sendRedirect("index");
-            }else{
-                request.getSession().setAttribute("error", "ERROR");
-                response.sendRedirect("index.jsp");
-            }
-            
+            response.sendRedirect("cerrar.jsp");
         }
     }
 
@@ -73,20 +53,6 @@ public class SLogin extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
@@ -95,5 +61,5 @@ public class SLogin extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-     
+
 }

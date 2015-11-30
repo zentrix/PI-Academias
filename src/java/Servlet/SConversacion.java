@@ -5,26 +5,19 @@
  */
 package Servlet;
 
-import Ejb.EjbUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author carlos
  */
-@WebServlet(name = "SLogin", urlPatterns = {"/sLogin"})
-public class SLogin extends HttpServlet {
+public class SConversacion extends HttpServlet {
 
-    @EJB
-    private EjbUsuario ejbUsuario;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,23 +30,10 @@ public class SLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if(request.getMethod().equals("GET")){
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        if(request.getMethod().equals("POST")){
-            String usuario = request.getParameter("usuario");
-            String password = request.getParameter("contrasena");
+        try (PrintWriter out = response.getWriter()) {
+            if(request.getMethod().equals("POST")){
             
-            if(ejbUsuario.isExistUsuario(usuario, password)){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("ejbUsuario", ejbUsuario);
-                response.sendRedirect("index");
-            }else{
-                request.getSession().setAttribute("error", "ERROR");
-                response.sendRedirect("index.jsp");
             }
-            
         }
     }
 
@@ -95,5 +75,5 @@ public class SLogin extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-     
+
 }

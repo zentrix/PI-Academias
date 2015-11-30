@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,11 +39,13 @@ public class SIndex extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         if(request.getMethod().equals("GET")){
+            ejbConversacion = new EjbConversacion();
             if(ejbConversacion.listarConversaciones()){
-                request.setAttribute("ejbComunicacion", ejbConversacion);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("ejbComunicacion", ejbConversacion);
+                response.sendRedirect("index.jsp");
             }else{
-                request.setAttribute("mensajeError", "No hay datos que mostrar");
+                request.getSession().setAttribute("mensajeError", "No hay datos que mostrar");
                 response.sendRedirect("index.jsp");
             }
         }

@@ -4,6 +4,8 @@
     Author     : carlos
 --%>
 
+<%@page import="Ejb.EjbConversacion"%>
+<%@page import="bean.Conversacion"%>
 <%@page import="bean.Usuario"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +20,7 @@
     <body>
         <jsp:useBean id="ejbUsuario" scope="session" class="Ejb.EjbUsuario" />
         <jsp:useBean id="ejbComunicacion" scope="session" class="Ejb.EjbConversacion" />
-        <jsp:getProperty name="ejbComunicacion" property="listConversacion" />
+        <% Ejb.EjbConversacion ejbConversacion = (EjbConversacion) session.getAttribute("ejbComunicacion"); %>
         <% if(ejbUsuario.getUsuario().getUsuario()==null){ response.sendRedirect("login.jsp");} %>
         <!-- Bara de de navegacion-->
             <nav role="navigation" class="navbar navbar-default">
@@ -47,24 +49,33 @@
        
             <div class="container">
                 <div class="panel panel-default">
-                    <form name="chat" action="SComunicaciones" method="POST">
+                    <form name="chat" action="" method="POST">
                         <div class="form-group">
                            <textarea class="form-control" name="mensaje" rows="3" placeholder="ingresa un comentario" required="true" ></textarea>
-                           <input type="text" name="" id="idMaestro" value="${ejbUsuario.usuario.idMaestro}"/>
+                           <input type="hidden" name="idMaestro" id="idMaestro" value="${ejbUsuario.usuario.idMaestro}"/>
                            <input type="submit" class="btn btn-block" name="send" value="Publicar">
                         </div>                        
                     </form>
                 </div>
             </div>
-            <div class="container">
-                <div class="panel panel-default">
-                    <% if(request.getAttribute("mensajeError")==null) 
-                        {%> no hay Mensajes <% } else{ %>
-                    <c:forEach var="items" items="${ejbComunicacion.listConversacion}">
-                        <c:out value="${items}" />
-                    </c:forEach><% } %>
-                </div>
-            </div>
+            <% if(ejbComunicacion.getListConversacion()==null){} 
+            else {
+            %>
+            
+                <% for(int i=0;i<ejbComunicacion.getListConversacion().size();i++) { %>
+                    <div class="container">
+                        <div class="panel panel-default">
+                            <% Conversacion conversacio = new Conversacion();
+                                conversacio = ejbComunicacion.getListConversacion().get(i);
+                            %>
+                            <label><%=conversacio.getNombre() %></label>
+                            <label><%=conversacio.getFecha() %></label>
+                            <label><%=conversacio.getComentario() %></label>
+                        </div>
+                    </div>
+                <% } 
+            } %>
+            
             
         <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>

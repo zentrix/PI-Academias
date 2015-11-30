@@ -20,6 +20,10 @@
         <servlet-name>SReuniones</servlet-name>
         <servlet-class>Servlet.reunionesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SConversacion</servlet-name>
+        <servlet-class>Servlet.SConversacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Sindex</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -33,12 +37,16 @@
         <url-pattern>/listas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Sminuta</servlet-name>
-        <url-pattern>/minuta</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SReuniones</servlet-name>
         <url-pattern>/reunion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sminuta</servlet-name>
+        <url-pattern>/getMinuta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SConversacion</servlet-name>
+        <url-pattern>/SConversacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -46,7 +54,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/login</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>

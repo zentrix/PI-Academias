@@ -25,7 +25,7 @@
                     <h3 class="panel-title">Login</h3>
                 </div>
                 <div class="panel-body">
-                    <form name="login" action="SLogin" method="POST"> 
+                    <form name="login" action="login" method="POST"> 
                         <%  if(session.getAttribute("error")==null){}
                             else if(session.getAttribute("error").equals("ERROR")){
                                 
